@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<h2 th:text="#{registreeringud}"></h2>
+<div class="search-container">
+    <form action="#" th:action="@{/search}" method="get">
+        <input type="text" id="search" placeholder="Sisesta nimi.." name="searchString"/>
+        <button class="button button1" th:text="Otsi" type="submit"></button>
+    </form>
+</div>
+<p><a href="index">Esilehele</a></p>
+<table>
+    <th th:text="#{arsti.nimi}"></th>
+    <th th:text="#{visiidi.kuupaev}"></th>
+    <tr class="styled" th:each="item : ${allVisits}">
+        <td th:text="${item.getDentistName()}"></td>
+        <td th:text="${item.getVisitTime()}"></td>
+        <td><button class="button button1" th:text="#{vaata}"
+                    th:onclick="'location.href=\'/details/' + ${item.getId()} + '\''"></button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

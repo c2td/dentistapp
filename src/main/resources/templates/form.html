@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<form action="#" th:action="@{/}" th:object="${dentistVisitDTO}" method="post">
+    <table>
+        <tr><td colspan="2"><h2 th:text="#{registreeri.visiidile}"></h2></td></tr>
+        <tr>
+            <td><label for="dentistName" th:text="#{arsti.nimi}"></label></td>
+            <td>
+                <div>
+                    <select id="dentistName" th:field="*{dentistName}">
+                        <option th:text="#{valige.arst}" selected="selected" value=""></option>
+                        <option th:value="${item.getId()}" th:each="item : ${allDentists}"
+                                th:text="${item.getName()}" th:field="*{dentistName}"></option>
+                    </select>
+                </div>
+            </td>
+            <td th:if="${#fields.hasErrors('dentistName')}" th:errors="*{dentistName}">Nime viga</td>
+        </tr>
+
+        <tr>
+            <td><label for="visitTime" th:text="#{valige.kuupaev}"></label></td>
+            <td>
+                <input type="datetime-local" id="visitTime" th:field="*{visitTime}" placeholder="dd.MMM.yyy HH:mm"/>
+            </td>
+            <td th:if="${#fields.hasErrors('visitTime')}" th:errors="*{visitTime}">Kuupäeva viga</td>
+        </tr>
+
+        <tr>
+            <td>
+                <button class="button button2" type="submit" value="Submit" th:text="#{salvesta.broneering}"></button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

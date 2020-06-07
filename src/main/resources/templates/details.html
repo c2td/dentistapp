@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="../styles.css"/>
+</head>
+<body>
+<h2 th:text="Detailvaade"></h2>
+<table>
+    <div th:if="${searchResults.empty}">
+        <tr><p>Tulemusi ei leitud</p></tr>
+    </div>
+    <div th:if="${!searchResults.empty}">
+    <th th:text="#{id}"></th>
+    <th th:text="#{arsti.nimi}"></th>
+    <th th:text="#{visiidi.kuupaev}"></th>
+    </div>
+    <tr class="styled" th:each="item : ${searchResults}">
+        <td th:text="${item.getId()}"></td>
+        <td th:text="${item.getDentistName()}"></td>
+        <td th:text="${item.getVisitTime()}"></td>
+        <td>
+            <form action="#" th:action="@{'/details/' + ${item.getId()} + '/update'}" method="get">
+        <td><button class="button button2" type="submit" value="Submit" th:text="#{muuda}"></button></td>
+        </form>
+        </td>
+        <form action="#" th:action="@{'/details/' + ${item.getId()} + '/delete'}" method="post">
+            <td><button class="button button3" type="submit" value="Submit" th:text="#{kustuta}"></button></td>
+        </form>
+    </tr>
+</table>
+</body>
+</html>
