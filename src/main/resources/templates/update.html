@@ -6,8 +6,7 @@
 <form action="#" th:action="@{/update}" th:object="${dentistVisitDTO}" method="post">
     <input type="hidden" id="Id" name="Id" th:value="${visit.getId()}" th:field="*{id}"/>
     <table>
-        <tr><td colspan="2"><h2 th:text="#{muuda.broneeringut} + ': ' + ${visit.getId()}
-        + ' ' + ${visit.getDentistName()} + ' ' + ${visit.getVisitTime()}"></h2></td></tr>
+        <tr><td colspan="2"><h2 th:text="#{muuda.broneeringut}"></h2></td></tr>
         <tr>
             <td><label for="dentistName" th:text="#{arsti.nimi}"></label></td>
             <td>
